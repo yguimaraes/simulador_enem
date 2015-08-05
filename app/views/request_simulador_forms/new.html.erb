@@ -1,0 +1,30 @@
+<%= form_for @request_simulador_form do |f| %>
+    <%= f.label :nome_do_curso %>
+    <%= f.select(:nome_do_curso, ZndbxSisu.get_cursos.map { |value| [ value, value ] }) %>
+
+    <%= f.label :nota_humanas %>
+    <%= f.number_field :nota_humanas %>
+
+    <%= f.label :nota_natureza %>
+    <%= f.number_field :nota_natureza %>
+
+    <%= f.label :nota_linguagens %>
+    <%= f.number_field :nota_linguagens %>
+
+    <%= f.label :nota_matematica %>
+    <%= f.number_field :nota_matematica %>
+
+    <%= f.label :nota_redacao %>
+    <%= f.number_field :nota_redacao %>
+
+    <%= f.label :is_minority %>
+    <%= f.check_box :is_minority %>
+
+    <%= f.label :is_public_school %>
+    <%= f.check_box :is_public_school %>
+
+    <%= f.label :has_low_income %>
+    <%= f.check_box :has_low_income %>
+
+    <%= f.submit %>
+<% end %>
