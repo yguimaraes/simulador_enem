@@ -1,0 +1,3 @@
+class SimuladorEnemController < ApplicationController
+
+end
