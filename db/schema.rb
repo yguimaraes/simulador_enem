@@ -27,4 +27,7 @@ ActiveRecord::Schema.define(version: 20150803222136) do
     t.datetime "updated_at",                           null: false
   end
 
+  add_index "zndbx_sisus", ["modalidade_de_concorrencia"], name: "index_zndbx_sisus_on_modalidade_de_concorrencia"
+  add_index "zndbx_sisus", ["nome_do_curso"], name: "index_zndbx_sisus_on_nome_do_curso"
+
 end
