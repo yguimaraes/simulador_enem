@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_da_ies: MyString
+  sigla: MyString
+  local_de_oferta: MyString
+  codigo_do_curso: 
+  nome_do_curso: MyString
+  grau: MyString
+  turno: MyString
+  modalidade_de_concorrencia: MyText
+  nota_de_corte: 1.5
+
+two:
+  nome_da_ies: MyString
+  sigla: MyString
+  local_de_oferta: MyString
+  codigo_do_curso: 
+  nome_do_curso: MyString
+  grau: MyString
+  turno: MyString
+  modalidade_de_concorrencia: MyText
+  nota_de_corte: 1.5
