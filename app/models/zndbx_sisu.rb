@@ -9,7 +9,7 @@ class ZndbxSisu < ActiveRecord::Base
   end
 
   def self.get_cursos
-    pluck(:nome_do_curso).uniq
+    pluck(:nome_do_curso).uniq.sort
   end
 
   def self.get_hash_universities_results(nome_do_curso, modalidades_de_concorrencia, nota_media_aluno)
@@ -34,7 +34,7 @@ class ZndbxSisu < ActiveRecord::Base
   end
 
   def self.get_universities_approved(query_universities, nota_media_aluno)
-    query_universities.where("nota_de_corte <= ?", nota_media_aluno).order(:nota_de_corte).to_a
+    query_universities.where("nota_de_corte <= ?", nota_media_aluno).order(nota_de_corte: :desc).to_a
   end
 
   def self.get_universities_reproved(query_universities, nota_media_aluno)

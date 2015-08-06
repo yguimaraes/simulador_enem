@@ -2,29 +2,47 @@
     <%= f.label :nome_do_curso %>
     <%= f.select(:nome_do_curso, ZndbxSisu.get_cursos.map { |value| [ value, value ] }) %>
 
+    <br>
+
     <%= f.label :nota_humanas %>
     <%= f.number_field :nota_humanas %>
+
+    <br>
 
     <%= f.label :nota_natureza %>
     <%= f.number_field :nota_natureza %>
 
+    <br>
+
     <%= f.label :nota_linguagens %>
     <%= f.number_field :nota_linguagens %>
+
+    <br>
 
     <%= f.label :nota_matematica %>
     <%= f.number_field :nota_matematica %>
 
+    <br>
+
     <%= f.label :nota_redacao %>
     <%= f.number_field :nota_redacao %>
+
+    <br>
 
     <%= f.label :is_minority %>
     <%= f.check_box :is_minority %>
 
+    <br>
+
     <%= f.label :is_public_school %>
     <%= f.check_box :is_public_school %>
+
+    <br>
 
     <%= f.label :has_low_income %>
     <%= f.check_box :has_low_income %>
 
-    <%= f.submit %>
+    <br>
+
+    <%= f.submit "Enviar" %>
 <% end %>

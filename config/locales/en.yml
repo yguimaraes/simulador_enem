@@ -21,3 +21,15 @@
 
 en:
   hello: "Hello world"
+  helpers:
+      label:
+        request_simulador_form:
+          nome_do_curso: "Curso"
+          nota_redacao: "Nota Redação"
+          nota_humanas: "Nota Ciências Humanas e suas Tecnologias"
+          nota_natureza: "Nota Ciências da Natureza e suas Tecnologias"
+          nota_linguagens: "Nota Linguagens, Códigos e suas Tecnologias"
+          nota_matematica: "Nota Matemática e suas Tecnologias"
+          is_minority: "Você se considera preto, pardo ou indígena"
+          is_public_school: "Você cursou o ensino médio em escola pública"
+          has_low_income: "Você possui renda familiar mensal por pessoa de até 1,5 salários mínimos"

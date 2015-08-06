@@ -1,0 +1,9 @@
+<h1>Resultado Simulador</h1>
+<h2>Parabens, voce passaria para essas faculdades:</h2>
+<ol class="zndbx_sisus">
+  <%= render @hash_universities[:universities_approved] %>
+</ol>
+<h2>Infelizmente voce nao passaria para essas faculdades, mas nao desanime, voce ainda pode estudar mais!</h2>
+<ol class="zndbx_sisus">
+  <%= render @hash_universities[:universities_reproved] %>
+</ol>

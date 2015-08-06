@@ -6,10 +6,9 @@ class RequestSimuladorFormsController < ApplicationController
 
   def create
     @request_simulador_form = RequestSimuladorForm.new(request_simulador_form_params)
-    @hash_universities = @request_simulador_form.save
 
-    if @hash_universities
-
+    if @hash_universities = @request_simulador_form.save
+      render :create
     else
       render :new
     end

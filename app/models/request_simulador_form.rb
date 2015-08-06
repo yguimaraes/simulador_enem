@@ -1,13 +1,26 @@
 class RequestSimuladorForm
   include ActiveModel::Model
+  include Virtus
 
-  attr_accessor :nome_do_curso, :nota_humanas, :nota_natureza, :nota_linguagens, :nota_matematica, :nota_redacao, :is_minority, :is_public_school, :has_low_income
+  #attr_accessor :nome_do_curso, :nota_humanas, :nota_natureza, :nota_linguagens, :nota_matematica, :nota_redacao, :is_minority, :is_public_school, :has_low_income
+
+  attribute :nome_do_curso, String
+  attribute :nota_humanas, Float
+  attribute :nota_natureza, Float
+  attribute :nota_linguagens, Float
+  attribute :nota_matematica, Float
+  attribute :nota_redacao, Float
+  attribute :is_minority, Boolean
+  attribute :is_public_school, Boolean
+  attribute :has_low_income, Boolean
 
   validates_presence_of :nota_humanas
 
+  validates_numericality_of :nota_humanas, :nota_natureza, :nota_linguagens, :nota_matematica, :nota_redacao
+
   def save
     if valid?
-      execute
+      @hash_universities = execute
       #true
     else
       false
