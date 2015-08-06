@@ -34,11 +34,11 @@ class ZndbxSisu < ActiveRecord::Base
   end
 
   def self.get_universities_approved(query_universities, nota_media_aluno)
-    query_universities.where("nota_de_corte <= ?", nota_media_aluno).order(nota_de_corte: :desc).to_a
+    query_universities.having("nota_de_corte <= ?", nota_media_aluno).order(nota_de_corte: :desc).to_a
   end
 
   def self.get_universities_reproved(query_universities, nota_media_aluno)
-    query_universities.where("nota_de_corte > ?", nota_media_aluno).order(:nota_de_corte).to_a
+    query_universities.having("nota_de_corte > ?", nota_media_aluno).order(:nota_de_corte).to_a
     #array_universities.select { |row| row[:nota_de_corte] > nota_media_aluno }.sort { |x,y| x[:nota_de_corte] <=> y[:nota_de_corte]}
   end
 
