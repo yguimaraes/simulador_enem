@@ -1,11 +1,17 @@
-<h1>Resultado Simulador</h1>
-<% if !@hash_universities[:universities_approved].any? %>
+<h1>Resultado Simulador para sua nota media de <%= @nota_media %> </h1>
+<% if @hash_universities[:universities_approved].any? %>
 <h2>Parabens, voce passaria para essas faculdades:</h2>
 <ol class="zndbx_sisus">
   <%= render @hash_universities[:universities_approved] %>
 </ol>
 <% end %>
-<% if !@hash_universities[:universities_reproved].any? %>
+<% if @hash_universities[:universities_almost_approved].any? %>
+    <h2>Passou perto! Estude mais um pouquinho que voce consegue entrar nessas faculdades:</h2>
+    <ol class="zndbx_sisus">
+      <%= render @hash_universities[:universities_almost_approved] %>
+    </ol>
+<% end %>
+<% if @hash_universities[:universities_reproved].any? %>
 <h2>Infelizmente voce nao passaria para essas faculdades, mas nao desanime, voce ainda pode estudar mais!</h2>
 <ol class="zndbx_sisus">
   <%= render @hash_universities[:universities_reproved] %>

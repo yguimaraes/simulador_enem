@@ -8,6 +8,7 @@ class RequestSimuladorFormsController < ApplicationController
     @request_simulador_form = RequestSimuladorForm.new(request_simulador_form_params)
 
     if @hash_universities = @request_simulador_form.save
+      @nota_media = @request_simulador_form.get_nota_media
       render :create
     else
       render :new

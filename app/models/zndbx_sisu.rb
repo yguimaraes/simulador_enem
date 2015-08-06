@@ -14,12 +14,19 @@ class ZndbxSisu < ActiveRecord::Base
 
   def self.get_hash_universities_results(nome_do_curso, modalidades_de_concorrencia, nota_media_aluno)
     query_universities = filter_request_aluno(nome_do_curso, modalidades_de_concorrencia)
-    universities_approved = get_universities_approved(query_universities, nota_media_aluno)
-    universities_reproved = get_universities_reproved(query_universities, nota_media_aluno)
-    { universities_approved: universities_approved, universities_reproved:universities_reproved }
+    #universities_approved = get_universities_approved(query_universities, nota_media_aluno)
+    #universities_reproved = get_universities_reproved(query_universities, nota_media_aluno)
+    universities_approved = get_universities_by_score_range(query_universities, 0, nota_media_aluno, false)
+    universities_almost_approved = get_universities_by_score_range(query_universities, nota_media_aluno, nota_media_aluno + almost_value)
+    universities_reproved = get_universities_by_score_range(query_universities, nota_media_aluno + almost_value, 1000)
+    { universities_approved: universities_approved, universities_almost_approved: universities_almost_approved, universities_reproved:universities_reproved }
   end
 
   private
+
+  def self.almost_value
+    50
+  end
 
   def self.filter_request_aluno(nome_do_curso, modalidades_de_concorrencia)
     # select the entries that offers the course the student wants, picking just the one with the minimum mark requirement he needs based on the modalities he participates.
@@ -33,8 +40,16 @@ class ZndbxSisu < ActiveRecord::Base
     #ActiveRecord::Base.connection.execute(sql)
   end
 
+  def self. get_universities_by_score_range(query_universities, min_score, max_score, isAsc = true)
+    if(isAsc)
+      query_universities.having("nota_de_corte > ? AND nota_de_corte <= ?", min_score, max_score).order(:nota_de_corte).to_a
+    else
+      query_universities.having("nota_de_corte > ? AND nota_de_corte <= ?", min_score, max_score).order(nota_de_corte: :desc).to_a
+    end
+  end
+
   def self.get_universities_approved(query_universities, nota_media_aluno)
-    query_universities.having("nota_de_corte <= ?", nota_media_aluno).order(nota_de_corte: :desc).to_a
+    #query_universities.having("nota_de_corte <= ?", nota_media_aluno).order(nota_de_corte: :desc).to_a
   end
 
   def self.get_universities_reproved(query_universities, nota_media_aluno)
