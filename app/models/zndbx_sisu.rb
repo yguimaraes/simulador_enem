@@ -31,30 +31,23 @@ class ZndbxSisu < ActiveRecord::Base
   def self.filter_request_aluno(nome_do_curso, modalidades_de_concorrencia)
     # select the entries that offers the course the student wants, picking just the one with the minimum mark requirement he needs based on the modalities he participates.
 
-    ZndbxSisu.select('MIN(nota_de_corte) as nota_de_corte, nome_do_curso, nome_da_ies, local_de_oferta, sigla, turno, modalidade_de_concorrencia')
+    ZndbxSisu.select('MIN(nota_de_corte) as nota_de_corte, nome_do_curso, nome_da_ies, local_de_oferta, sigla, turno')
         .where(modalidade_de_concorrencia: modalidades_de_concorrencia)
         .where(nome_do_curso: nome_do_curso)
-        .group('nome_do_curso, nome_da_ies, local_de_oferta, turno')
+        .group('nome_do_curso, nome_da_ies, local_de_oferta, turno, sigla')
 
     #sql = "SELECT * FROM zndbx_sisus AS rowSisu WHERE nome_do_curso = '#{nome_do_curso}' AND nota_de_corte = (SELECT MIN(nota_de_corte) FROM zndbx_sisus WHERE sigla = rowSisu.sigla AND local_de_oferta = rowSisu.local_de_oferta AND turno = rowSisu.turno AND nome_do_curso = '#{nome_do_curso}' AND modalidade_de_concorrencia IN ('#{modalidade_de_concorrencia.first}'))"
     #ActiveRecord::Base.connection.execute(sql)
   end
 
   def self. get_universities_by_score_range(query_universities, min_score, max_score, isAsc = true)
+    query = query_universities.having("MIN(nota_de_corte) > ? AND MIN(nota_de_corte) <= ?", min_score, max_score)
     if(isAsc)
-      query_universities.having("nota_de_corte > ? AND nota_de_corte <= ?", min_score, max_score).order('MIN(nota_de_corte) ').to_a
+      query.order('MIN(nota_de_corte)').to_a
     else
-      query_universities.having("nota_de_corte > ? AND nota_de_corte <= ?", min_score, max_score).order('MIN(nota_de_corte) desc').to_a
+      query.order('MIN(nota_de_corte) DESC').to_a
     end
-  end
 
-  def self.get_universities_approved(query_universities, nota_media_aluno)
-    #query_universities.having("nota_de_corte <= ?", nota_media_aluno).order(nota_de_corte: :desc).to_a
-  end
-
-  def self.get_universities_reproved(query_universities, nota_media_aluno)
-    query_universities.having("nota_de_corte > ?", nota_media_aluno).order(:nota_de_corte).to_a
-    #array_universities.select { |row| row[:nota_de_corte] > nota_media_aluno }.sort { |x,y| x[:nota_de_corte] <=> y[:nota_de_corte]}
   end
 
 end

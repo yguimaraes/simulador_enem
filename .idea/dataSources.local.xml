@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="Rails simulador_enem: development" uuid="d79be4a5-6789-4f68-b6f9-d6700743acb7" />
+    <data-source name="PostgreSQL - simulador_dev@localhost" uuid="8e70a761-c683-4e49-843b-bc62dd4d819a">
+      <secret-storage>master_key</secret-storage>
+      <schema-pattern>simulador_dev.*</schema-pattern>
+      <default-schemas>simulador_dev.*</default-schemas>
+    </data-source>
   </component>
 </project>

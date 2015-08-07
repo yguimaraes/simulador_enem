@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150803222136) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "zndbx_sisus", force: :cascade do |t|
     t.string   "nome_da_ies"
     t.string   "sigla"
@@ -27,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150803222136) do
     t.datetime "updated_at",                           null: false
   end
 
-  add_index "zndbx_sisus", ["modalidade_de_concorrencia"], name: "index_zndbx_sisus_on_modalidade_de_concorrencia"
-  add_index "zndbx_sisus", ["nome_do_curso"], name: "index_zndbx_sisus_on_nome_do_curso"
+  add_index "zndbx_sisus", ["modalidade_de_concorrencia"], name: "index_zndbx_sisus_on_modalidade_de_concorrencia", using: :btree
+  add_index "zndbx_sisus", ["nome_do_curso"], name: "index_zndbx_sisus_on_nome_do_curso", using: :btree
 
 end
