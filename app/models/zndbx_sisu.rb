@@ -42,9 +42,9 @@ class ZndbxSisu < ActiveRecord::Base
 
   def self. get_universities_by_score_range(query_universities, min_score, max_score, isAsc = true)
     if(isAsc)
-      query_universities.having("nota_de_corte > ? AND nota_de_corte <= ?", min_score, max_score).order(:nota_de_corte).to_a
+      query_universities.having("nota_de_corte > ? AND nota_de_corte <= ?", min_score, max_score).order('MIN(nota_de_corte) ').to_a
     else
-      query_universities.having("nota_de_corte > ? AND nota_de_corte <= ?", min_score, max_score).order(nota_de_corte: :desc).to_a
+      query_universities.having("nota_de_corte > ? AND nota_de_corte <= ?", min_score, max_score).order('MIN(nota_de_corte) desc').to_a
     end
   end
 

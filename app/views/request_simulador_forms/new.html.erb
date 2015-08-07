@@ -1,6 +1,6 @@
 <%= form_for @request_simulador_form do |f| %>
     <%= f.label :nome_do_curso %>
-    <%= f.select(:nome_do_curso, ZndbxSisu.get_cursos.map { |value| [ value, value ] }, {}, { multiple:"multiple", class: "js-example-basic-multiple-limit" } )%>
+    <%= f.select(:nome_do_curso, ZndbxSisu.get_cursos.map { |value| [ value, value ] }, {}, { multiple:"multiple", class: "select_curso", size: 5} )%>
 
     <br>
 
