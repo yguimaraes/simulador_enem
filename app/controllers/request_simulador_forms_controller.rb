@@ -5,6 +5,7 @@ class RequestSimuladorFormsController < ApplicationController
   end
 
   def create
+    params["request_simulador_form"]["nome_do_curso"].reject!{|a| a==""}
     @request_simulador_form = RequestSimuladorForm.new(request_simulador_form_params)
 
     if @hash_universities = @request_simulador_form.save
